@@ -4,6 +4,7 @@ A tool that I created to use some of the known methods of disabling tracking in 
 ## Dependencies
 * wxPython
 * PyWin32
+* Windows 10 (Duh)
 
 ## How to use
 You can either  
