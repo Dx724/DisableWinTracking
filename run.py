@@ -44,9 +44,8 @@ class WinFrame(wx.Frame):
             _winreg.SetValueEx(self.telekey, "AllowTelemetry", 0, _winreg.REG_SZ, "0")  # Disable Telemetry
             _winreg.CloseKey(self.telekey)
         if self.diagbox.IsChecked():
-            print "Clearing Diagtrack Log"
-            open('C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl', 'w').close()
-            subprocess.Popen("echo y|cacls C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl /d SYSTEM", shell=True)
+            open('C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl', 'w').close()  # Clear the AutoLogger file
+            subprocess.Popen("echo y|cacls C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl /d SYSTEM", shell=True)  # Prevent modification to file
 
         if self.servicerad.Selection == 0 and self.servicebox.IsChecked():
             try:
