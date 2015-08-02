@@ -40,9 +40,12 @@ class WinFrame(wx.Frame):
         if self.telebox.IsChecked():
             self.telekeypath = r'SOFTWARE\Policies\Microsoft\Windows\DataCollection'  # Path to Telemetry key
 
-            self.telekey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, self.telekeypath, 0, _winreg.KEY_ALL_ACCESS)
-            _winreg.SetValueEx(self.telekey, "AllowTelemetry", 0, _winreg.REG_SZ, "0")  # Disable Telemetry
-            _winreg.CloseKey(self.telekey)
+            try:
+                self.telekey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, self.telekeypath, 0, _winreg.KEY_ALL_ACCESS)
+                _winreg.SetValueEx(self.telekey, "AllowTelemetry", 0, _winreg.REG_SZ, "0")  # Disable Telemetry
+                _winreg.CloseKey(self.telekey)
+            except WindowsError:
+                pass
         if self.diagbox.IsChecked():
             try:
                 open('C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl', 'w').close()  # Clear the AutoLogger file
