@@ -23,7 +23,7 @@ class WinFrame(wx.Frame):
 
         self.servicebox = wx.CheckBox(wxpanel, label="Services", pos=(10, 30))
         self.servicebox.Set3StateValue(0)
-        self.servicebox.Bind(wx.EVT_CHECKBOX, self.servicerad)
+        self.servicebox.Bind(wx.EVT_CHECKBOX, self.serviceradcheck)
 
         self.servicerad = wx.RadioBox(wxpanel, label="Service Method", pos=(135, 10), choices=["Delete", "Disable"])
         self.servicerad.Disable()
@@ -33,7 +33,7 @@ class WinFrame(wx.Frame):
         self.Centre()
         self.Show()
 
-    def servicerad(self, event):
+    def serviceradcheck(self, event):
         self.servicerad.Enable(self.servicebox.IsChecked())  # If Service box is ticked enable Service radio box
 
     def onok(self, event):
